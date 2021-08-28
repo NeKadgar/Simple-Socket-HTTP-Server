@@ -8,6 +8,7 @@ urls = (
         ("/post", "post.html", post_page)
     )
 
+
 class URL:
     @staticmethod
     def parse(url):

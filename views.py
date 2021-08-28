@@ -18,7 +18,5 @@ def post_page(url, html):
     return load_page(html, params={'path': url.path, 'post_id': post_id})
 
 
-
 def error_page(url, html):
     return load_page(html, params={'path': url.path})
-
