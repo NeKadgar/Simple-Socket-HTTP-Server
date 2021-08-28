@@ -1,17 +1,13 @@
-from utils import string_to_fstring
+from utils import load_page
 from urllib import parse
 
 
 def main_page(url, html):
-    with open(f"templates/{html}", "r") as file:
-        document = string_to_fstring(file.read(), path=url.path)
-    return document
+    return load_page(html, params={'path': url.path})
 
 
 def about_page(url, html):
-    with open(f"templates/{html}", "r") as file:
-        document = string_to_fstring(file.read(), path=url.path)
-    return document
+    return load_page(html, params={'path': url.path})
 
 
 def post_page(url, html):
@@ -19,12 +15,10 @@ def post_page(url, html):
         post_id = parse.parse_qs(url.query)['id'][0]
     except KeyError:
         post_id = 0
-    with open(f"templates/{html}", "r") as file:
-        document = string_to_fstring(file.read(), path=url.path, id=post_id)
-    return document
+    return load_page(html, params={'path': url.path, 'post_id': post_id})
+
 
 
 def error_page(url, html):
-    with open(f"templates/{html}", "r") as file:
-        document = string_to_fstring(file.read(), path=url.path)
-    return document
+    return load_page(html, params={'path': url.path})
+
