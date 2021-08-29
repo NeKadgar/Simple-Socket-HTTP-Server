@@ -11,11 +11,10 @@ def about_page(url, html):
 
 
 def post_page(url, html):
-    try:
-        post_id = parse.parse_qs(url.query)['id'][0]
-    except KeyError:
-        post_id = 0
-    return load_page(html, params={'path': url.path, 'post_id': post_id})
+    post_id = parse.parse_qs(url.query).get('id')
+    if post_id:
+        return load_page(html, params={'path': url.path, 'post_id': post_id[0]})
+    return error_page(url, "error.html")
 
 
 def error_page(url, html):
